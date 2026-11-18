@@ -20,42 +20,47 @@ st.info('This app is built with a machine learning model!')
 
 risk_info = {
     'LOW': {
-        'icon': '🟢',
+        'icon':  '🟢',
         'title': 'Resiko Rendah',
         'explanation': (
             'Berdasarkan data yang diinput, Anda memiliki potensi'
-            'penyakit cardiovascular yang tergolong rendah. Profil Kesehatan relatif baik'),
+            'penyakit cardiovascular yang tergolong rendah. Profil kesehatan Anda baik!',
+        ),
         'recommendation':[
-            'Pertahankan pola makan seimbang: perbanyak sayur dan buah'
-            'Tetap aktif berolahraga, minimal sekitar 150 menit olahraga dalam seminggu'
-            'Lakukan pemeriksaan Medical Check Up Rutin, misalnya setahun sekali'],
+            'Pertahankan pola hidup dan makan yang sehat, perbanyak makan sayur dan buah',
+            'Tetap aktif berolahraga minimal 150 menit per minggu',
+            'Lakukan medical check up rutin minimal sekali dalam setahun'
+        ],
     },
-    'INTERMEDIARY':{
-        'icon': '🟡',
+    'INTERMEDIARY': {
+        'icon':  '🟡',
         'title': 'Resiko Sedang',
         'explanation': (
             'Berdasarkan data yang diinput, Anda memiliki potensi'
-            'penyakit cardiovascular yang tergolong menengah. Beberapa faktor mungkin sudah muncul,'
-            'seperti tekanan darah tinggi, kolesterol naik, gula darah tinggi.')
+            'penyakit cardiovascular yang tergolong menengah/sedang.'
+            'Beberapa faktor mungkin sudah muncul seperti tekanan darah, kolesterol, atau gula darah naik',
+        ),
         'recommendation':[
-            'Perhatikan faktor yang masih diluar batas normal (tekanan darah, gula darah, dan kolesterol)',
-            'Perbaiki pola makan, kurangi makanan tinggi lemak jenuh, dan perhatikan penggunaan gula dan garam.',
-            'Perbaiki pola hidup, berhenti merokok jika Anda perokok, lakukan olahraga rutin 150menit per minggu.',
-            'Konsultasikan hasil ini dengan dokter dan lakukan pemeriksaan medical check up rutin minimal setahun sekali.'],
+            'Perbaiki pola hidup dan makan yang sehat, perbanyak makan sayur dan buah',
+            'Lakukan berolahraga intensitas sedang minimal 150 menit per minggu',
+            'Konsultasikan dengan tenaga medis dan Lakukan medical check up rutin minimal sekali dalam setahun'
+        ],
     },
-    'HIGH':{
-        'icon': '🔴',
+    'HIGH': {
+        'icon':  '🔴',
         'title': 'Resiko Tinggi',
-        'explanation':(
+        'explanation': (
             'Berdasarkan data yang diinput, Anda memiliki potensi'
-            'penyakit cardiovascular yang tergolong tinggi. Beberapa faktor mungkin sudah muncul,'
-            'seperti tekanan darah tinggi, kolesterol naik, gula darah tinggi. Ini perlu perhatian khusus dan lebih serius'),
-        'recommendation': [
-            'Perhatikan faktor yang masih diluar batas normal (tekanan darah, gula darah, dan kolesterol)',
-            'Perbaiki pola makan, kurangi makanan tinggi lemak jenuh, dan perhatikan penggunaan gula dan garam.',
-            'Perbaiki pola hidup, berhenti merokok jika Anda perokok, lakukan olahraga rutin 150menit per minggu.',
-            'Konsultasikan hasil ini dengan dokter dan lakukan pemeriksaan medical check up rutin minimal setahun sekali.'],
-    },
+            'penyakit cardiovascular yang tergolong Tinggi.'
+            'Beberapa faktor mungkin sudah muncul seperti tekanan darah, kolesterol, atau gula darah naik',
+        ),
+        'recommendation':[
+            'Perlu perhatian yang khusus dan lebih serius.',
+            'Konsultasikan dengan tenaga medis dan Lakukan medical check up rutin minimal sekali dalam setahun',
+            'Perbaiki pola hidup dan makan yang sehat, perbanyak makan sayur dan buah',
+            'Lakukan berolahraga intensitas sedang minimal 150 menit per minggu'
+        ],  
+    }
 }
 def run():
     st.title('Estimate Your Risk Level of CVD')
@@ -65,14 +70,13 @@ def run():
         Sex=st.selectbox('Sex: Female or Male', ['F', 'M'], index=1)
         Age=st.number_input('Age', min_value=1, max_value=150, value=30)
         Weight= st.number_input('Weight (kg)', min_value=5, max_value=500,value=55)
-        Height_m=st.number_input('Height (m)', value=1.63)
         BMI=st.number_input('BMI',value=0.0)
         AbdominalCircumference= st.number_input('Abdominal Circumference (cm)', value=0.0)
 
         st.markdown('---')
         BloodPressure=st.text_input('Blood Pressure (mmHg)', value='110/80')
-        TotalCholesterol= st.number_input('Total Cholesterol(mg/dL)', value=0)
-        HDL= st.number_input('HDL (mg/dL)', value=0)
+        TotalCholesterol= st.number_input('Total Cholesterol(mg/dL)', value=0.0)
+        HDL= st.number_input('HDL (mg/dL)', value=0.0)
         FastingBloodSugar=st.number_input('Fasting Blood Sugar', value=0)
 
         st.markdown('---')
@@ -83,7 +87,6 @@ def run():
 
         st.markdown('---')
         Height_cm = st.number_input('Height (cm)', value=163)
-        WaistToHeightRatio = st.number_input('Waist-to-Height Ratio (auto-generated number from Abdominal Circumference / Height (cm)', value=float(AbdominalCircumference/Height_cm))
         SystolicBP = st.number_input('Systolic BP', value=110)
         DiastolicBP = st.number_input('Diastolic BP', value=90)
         BloodPressureCategory=st.selectbox('Blood Pressure category', ['Normal', 'Elevated', 'Hypertension Stage 1', 'Hypertension Stage 2'])
@@ -99,7 +102,7 @@ def run():
         'Sex': Sex,
         'Age': Age,
         'Weight':  Weight,
-        'Height_m': Height_m,
+        'Height_m': Height_cm/100,
         'BMI': BMI,
         'Abdominal Circumference': AbdominalCircumference,
         'Blood Pressure (mmHg)': BloodPressure,
@@ -111,13 +114,14 @@ def run():
         'Physical Activity Level': PhysicalActivityLevel,
         'Family History of CVD': FamilyHistoryofCVD,
         'Height_cm': Height_cm,
-        'Waist-to-Height Ratio': WaistToHeightRatio,
+        'Waist-to-Height Ratio': AbdominalCircumference/Height_cm,
         'Systolic BP': SystolicBP,
         'Diastolic BP': DiastolicBP,
         'Blood Pressure Category': BloodPressureCategory,
         'Estimated LDL': EstimatedLDL,
         'CVD Risk Score': np.nan
     }
+
     
     # input data inference into dataframe
     data_inf = pd.DataFrame([data_inf])
@@ -129,25 +133,28 @@ def run():
         y_pred_inf = le.inverse_transform(y_pred_original)[0]
 
         st.markdown('## Prediction Result')
+        info = risk_info.get(y_pred_inf)
         st.markdown(f'### {y_pred_inf}')
-    info = risk_info.get(str(y_pred_inf).strip().upper()
 
-    if info is None:
-        st.write(f'## {y_pred_inf'}
-    else:
-         response=print(f'{info['icon'] {info['title']} ({y_pred_inf})')
-         if y_pred_inf.strip().upper() == 'LOW':
-             st.success(msg)
-        elif y_pred_inf.strip().upper() == 'INTERMEDIARY':
-            st.warning(msg)
+        if info is None:
+            st.write(f'### {y_pred_inf}')
         else:
-            st.error(msg)
+            response=f"{info['icon']} {info['title']}"
+            if y_pred_inf == 'LOW':
+                st.success(response)
+            elif y_pred_inf == 'INTERMEDIARY':
+                st.warning(response)
+            else:
+                st.error(response)
 
-        st.markdown('#### Explanation')
-        st.write(info['explanation'])
+            st.markdown('### Recommendation')
+            for rec in info['recommendation']:
+                st.markdown(f'-{rec}')
 
-        st.info(
-            'Disclaimer: hasil ini adalah estimasi dari model machine learning untuk keperluan data screening awal'
-            'dan bukan diagnosa medis. Konsultasikan dengan tenaga kesehatan untuk pemeriksaan lebih lanjut.')
+            st.info(
+                'Disclaimer: Hasil ini adalah estimasi dari model machine learning'
+                'untuk keperluan data screening awal dan bukan diagnosa medis.'
+                ' Konsultasikan dengan tenaga medis terkait hasil ini untuk pemeriksaan lebih lanjut.'
+            )
 if __name__=='__main__':
     run()
