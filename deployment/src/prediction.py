@@ -27,8 +27,8 @@ def run():
         Age=st.number_input('Age', min_value=1, max_value=150, value=30)
         Weight= st.number_input('Weight (kg)', min_value=5, max_value=500,value=55)
         Height_m=st.number_input('Height (m)', value=1.63)
-        BMI=st.number_input('BMI',value=0)
-        AbdominalCircumference= st.number_input('Abdominal Circumference (cm)', value=0)
+        BMI=st.number_input('BMI',value=0.0)
+        AbdominalCircumference= st.number_input('Abdominal Circumference (cm)', value=0.0)
 
         st.markdown('---')
         BloodPressure=st.text_input('Blood Pressure (mmHg)', value='110/80')
