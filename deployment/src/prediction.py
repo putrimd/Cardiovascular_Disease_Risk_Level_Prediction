@@ -153,7 +153,7 @@ def run():
 
             st.info(
                 'Disclaimer: Hasil ini adalah estimasi dari model machine learning'
-                'untuk keperluan data screening awal dan bukan diagnosa medis.'
+                ' untuk keperluan data screening awal dan bukan diagnosa medis.'
                 ' Konsultasikan dengan tenaga medis terkait hasil ini untuk pemeriksaan lebih lanjut.'
             )
 if __name__=='__main__':
