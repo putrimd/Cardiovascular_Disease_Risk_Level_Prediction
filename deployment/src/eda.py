@@ -3,6 +3,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(BASE_DIR, 'P1M2_putri_dataset_cardiovascular.csv')
+
+
+@st.cache_data
+def load_data():
+    return pd.read_csv(DATA_PATH)
+    
 st.set_page_config(
     page_title='Cardiovascular Risk Level EDA',
     layout='wide',
@@ -20,13 +28,12 @@ def run():
     st.markdown('Cardiovascular Disease (CVD) adalah penyakit yang terjadi karena adanya gangguan jantung dan pembuluh darah. Penyakit Jantung dan stroke merupakan contoh penyakit Cardiovascular yang terkenal.')
     st.markdown('Berdasarkan WHO, estimasi 19.8 juta orang meninggal di tahun 2022, dikarenakan CVD, dengan 85% diantaranya serangan jantung dan stroke.')
     st.markdown('Di Indonesia, CVD menyebabkan sekitar 651.481 kematian setiap tahunnya, yang dikarenakan pola hidup tidak sehat, seperti terlalu banyak makan makanan berlemak, tidak rutin olahraga, kebiasaan merokok, dan kebiasaan konsumsi alkohol (Alodokter, 2026).')
-    st.markdown('Sebagai bentuk mitigas penangan CVD awal, maka dibutuhkan data screening yang dapat memprediksi seseorang memiliki resiko penyakit Cardiovascular.')
+    st.markdown('Sebagai bentuk mitigasi penangan CVD awal, maka dibutuhkan data screening yang dapat memprediksi seseorang memiliki resiko penyakit Cardiovascular.')
     st.markdown('Project ini dibuat dengan menggunakan algoritma GradientBoosting.')
     st.markdown('-'*40)
-
+    df = load_data()
     with st.expander('View the Data'):
         st.write('**Raw Data of 1529 Respondents Jamalpur Medical College Hospital, Bangladesh**')
-        df = pd.read_csv(r'../../../P1M2_putri_dataset_cardiovascular.csv')
         st.dataframe(df)
 
         st.write('**X Features**')
