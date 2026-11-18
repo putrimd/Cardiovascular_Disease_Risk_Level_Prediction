@@ -3,10 +3,13 @@ import pandas as pd
 import numpy as np
 import pickle
 
-with open('best_gradboost_model.pkl', 'rb') as model_file:
+MODEL_PATH = os.path.join(BASE_DIR, 'best_gradboost_model.pkl')
+LABEL_ENCODER_PATH = os.path.join(BASE_DIR, 'label_encoder.pkl')
+
+with open(MODEL_PATH, 'rb') as model_file:
     best_gradboost_model = pickle.load(model_file)
 
-with open('label_encoder.pkl', 'rb') as label_encoder_file:
+with open(LABEL_ENCODER_PATH, 'rb') as label_encoder_file:
     le = pickle.load(label_encoder_file)
 
 st.info('This app is built with a machine learning model!')
