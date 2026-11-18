@@ -5,6 +5,8 @@ import pickle
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(BASE_DIR, 'P1M2_putri_dataset_cardiovascular.csv')
+df = pd.read_csv(DATA_PATH)
 MODEL_PATH = os.path.join(BASE_DIR, 'best_gradboost_model.pkl')
 LABEL_ENCODER_PATH = os.path.join(BASE_DIR, 'label_encoder.pkl')
 
