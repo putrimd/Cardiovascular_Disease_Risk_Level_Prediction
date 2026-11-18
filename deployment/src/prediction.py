@@ -44,7 +44,8 @@ def run():
 
         st.markdown('---')
         Height_cm = st.number_input('Height (cm)', value=163)
-        WaistToHeightRatio = st.number_input('Waist-to-Height Ratio', value=0)
+        WaistToHeightRatio = AbdominalCircumference/Height_cm
+        st.number_input('Waist-to-Height Ratio (auto-input)', value=float(WaistToHeightRatio))
         SystolicBP = st.number_input('Systolic BP', value=110)
         DiastolicBP = st.number_input('Diastolic BP', value=90)
         BloodPressureCategory=st.selectbox('Blood Pressure category', ['Normal', 'Elevated', 'Hypertension Stage 1', 'Hypertension Stage 2'])
