@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
+import os
 
 MODEL_PATH = os.path.join(BASE_DIR, 'best_gradboost_model.pkl')
 LABEL_ENCODER_PATH = os.path.join(BASE_DIR, 'label_encoder.pkl')
