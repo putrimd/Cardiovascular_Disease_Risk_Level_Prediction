@@ -38,12 +38,11 @@ def run():
         st.dataframe(df)
 
         st.write('**X Features**')
-        X=df.drop('CVD Risk Level', axis=1)
-        X
+        st.dataframe(df.drop('CVD Risk Level', axis=1))
 
         st.write('**y target**')
-        y=df['CVD Risk Level']
-        y
+        st.dataframe(df['CVD Risk Level'])
+        
 
     # first viz
     st.header('CVD Risk Level of Respondents')
