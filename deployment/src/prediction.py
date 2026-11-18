@@ -18,6 +18,45 @@ with open(LABEL_ENCODER_PATH, 'rb') as label_encoder_file:
 
 st.info('This app is built with a machine learning model!')
 
+risk_info = {
+    'LOW': {
+        'icon': '🟢',
+        'title': 'Resiko Rendah',
+        'explanation': (
+            'Berdasarkan data yang diinput, Anda memiliki potensi'
+            'penyakit cardiovascular yang tergolong rendah. Profil Kesehatan relatif baik'),
+        'recommendation':[
+            'Pertahankan pola makan seimbang: perbanyak sayur dan buah'
+            'Tetap aktif berolahraga, minimal sekitar 150 menit olahraga dalam seminggu'
+            'Lakukan pemeriksaan Medical Check Up Rutin, misalnya setahun sekali'],
+    },
+    'INTERMEDIARY':{
+        'icon': '🟡',
+        'title': 'Resiko Sedang',
+        'explanation': (
+            'Berdasarkan data yang diinput, Anda memiliki potensi'
+            'penyakit cardiovascular yang tergolong menengah. Beberapa faktor mungkin sudah muncul,'
+            'seperti tekanan darah tinggi, kolesterol naik, gula darah tinggi.')
+        'recommendation':[
+            'Perhatikan faktor yang masih diluar batas normal (tekanan darah, gula darah, dan kolesterol)',
+            'Perbaiki pola makan, kurangi makanan tinggi lemak jenuh, dan perhatikan penggunaan gula dan garam.',
+            'Perbaiki pola hidup, berhenti merokok jika Anda perokok, lakukan olahraga rutin 150menit per minggu.',
+            'Konsultasikan hasil ini dengan dokter dan lakukan pemeriksaan medical check up rutin minimal setahun sekali.'],
+    },
+    'HIGH':{
+        'icon': '🔴',
+        'title': 'Resiko Tinggi',
+        'explanation':(
+            'Berdasarkan data yang diinput, Anda memiliki potensi'
+            'penyakit cardiovascular yang tergolong tinggi. Beberapa faktor mungkin sudah muncul,'
+            'seperti tekanan darah tinggi, kolesterol naik, gula darah tinggi. Ini perlu perhatian khusus dan lebih serius'),
+        'recommendation': [
+            'Perhatikan faktor yang masih diluar batas normal (tekanan darah, gula darah, dan kolesterol)',
+            'Perbaiki pola makan, kurangi makanan tinggi lemak jenuh, dan perhatikan penggunaan gula dan garam.',
+            'Perbaiki pola hidup, berhenti merokok jika Anda perokok, lakukan olahraga rutin 150menit per minggu.',
+            'Konsultasikan hasil ini dengan dokter dan lakukan pemeriksaan medical check up rutin minimal setahun sekali.'],
+    },
+}
 def run():
     st.title('Estimate Your Risk Level of CVD')
     st.subheader('Please fill in the screening form below:')
@@ -79,7 +118,6 @@ def run():
         'Estimated LDL': EstimatedLDL,
         'CVD Risk Score': np.nan
     }
-
     
     # input data inference into dataframe
     data_inf = pd.DataFrame([data_inf])
@@ -88,10 +126,28 @@ def run():
     if submit:
         #predict
         y_pred_original = best_gradboost_model.predict(data_inf)
-        y_pred_inf = le.inverse_transform(y_pred_original)
+        y_pred_inf = le.inverse_transform(y_pred_original)[0]
 
         st.markdown('## Prediction Result')
         st.markdown(f'### {y_pred_inf}')
+    info = risk_info.get(str(y_pred_inf).strip().upper()
 
+    if info is None:
+        st.write(f'## {y_pred_inf'}
+    else:
+         response=print(f'{info['icon'] {info['title']} ({y_pred_inf})')
+         if y_pred_inf.strip().upper() == 'LOW':
+             st.success(msg)
+        elif y_pred_inf.strip().upper() == 'INTERMEDIARY':
+            st.warning(msg)
+        else:
+            st.error(msg)
+
+        st.markdown('#### Explanation')
+        st.write(info['explanation'])
+
+        st.info(
+            'Disclaimer: hasil ini adalah estimasi dari model machine learning untuk keperluan data screening awal'
+            'dan bukan diagnosa medis. Konsultasikan dengan tenaga kesehatan untuk pemeriksaan lebih lanjut.')
 if __name__=='__main__':
     run()
