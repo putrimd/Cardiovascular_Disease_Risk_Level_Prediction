@@ -8,7 +8,7 @@ Prediksi Cardiovascular Disease (CVD) Risk Level
 4. Folder di deployment/src berisi file yang akan digunakan untuk web deployment di Streamlit.
 
 Open Notebook in Colab 
-<a https://colab.research.google.com/github/putrimd/Cardiovascular_Disease_Risk_Level_Prediction/blob/main/P1M2_putri_masyitah.ipynb">
+<a href=https://colab.research.google.com/github/putrimd/Cardiovascular_Disease_Risk_Level_Prediction/blob/main/P1M2_putri_masyitah.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
