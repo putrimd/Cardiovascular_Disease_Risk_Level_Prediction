@@ -4,6 +4,9 @@ Prediksi Cardiovascular Disease (CVD) Risk Level
 ## Repository Outline
 1. README.md - Penjelasan gambaran umum project
 2. P1M2_putri_masyitah.ipynb - Notebook yang berisi pengolahan data dengan python
+  <a href="https://colab.research.google.com/github/putrimd/Cardiovascular_Disease_Risk_Level_Prediction/blob/main/P1M2_putri_masyitah.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
 3. P1M2_putri_masyitah_inf.ipynb - Notebook yang berisi model inference
 4. Folder di deployment/src berisi file yang akan digunakan untuk web deployment di Streamlit.
 
@@ -19,7 +22,7 @@ Cadiosvacular adalah penyakit yang terjadi karena adanya gangguan pada jantung d
 Dataset ini adalah real-case yang berasal dari Rumah Sakit Jamalpur Medical College Hospital, Jamalpur, Bangladesh dari 20 January 2024 hingga 1 January 2025.<br>
 Link dataset dari Kaggle: <https://www.kaggle.com/datasets/jocelyndumlao/cair-cvd-2025-cardiovascular-risk-from-bangladesh?resource=download>.<br>
 
-Dataset memiliki 22 kolom, 1529 baris data, ...missing values.
+Dataset memiliki 22 kolom, 1529 baris data.
 
 ## Method
 Project ini mengenai machine learning sehingga metode yang dipakai adalah model supervised learning dengan model SVM, KNN, Decision Tree, Random Forest, dan XGBoost.
