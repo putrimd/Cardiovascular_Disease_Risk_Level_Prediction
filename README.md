@@ -3,12 +3,14 @@ Prediksi Cardiovascular Disease (CVD) Risk Level
 
 ## Repository Outline
 1. README.md - Penjelasan gambaran umum project.<br>
-2. P1M2_putri_masyitah.ipynb - Notebook yang berisi pengolahan data dengan python.  <a href="https://colab.research.google.com/github/putrimd/Cardiovascular_Disease_Risk_Level_Prediction/blob/main/P1M2_putri_masyitah.ipynb">
+2. P1M2_putri_masyitah.ipynb - Notebook yang berisi pengolahan data dengan python.
+3. P1M2_putri_masyitah_inf.ipynb - Notebook yang berisi model inference.
+4. Folder di deployment/src berisi file yang akan digunakan untuk web deployment di Streamlit.
+
+Open Notebook in Colab <a https://colab.research.google.com/github/putrimd/Cardiovascular_Disease_Risk_Level_Prediction/blob/main/P1M2_putri_masyitah.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
-<br>
-3. P1M2_putri_masyitah_inf.ipynb - Notebook yang berisi model inference.<br>
-4. Folder di deployment/src berisi file yang akan digunakan untuk web deployment di Streamlit.
+
 
 ## Problem Background
 Cadiosvacular adalah penyakit yang terjadi karena adanya gangguan pada jantung dan pembuluh darah. Penyakit jantung dan stroke merupakan penyakit cardiovascular yang terkenal. Berdasarkan WHO, estimasi 19.8 juta orang meninggal di 2022, dikarenakan CVD. 85% diantaranya serangan jantung dan stroke.<br> Di Indonesia, penyakit cardiovascular menyebabkan sekitar 651.481 kematian setiap tahunnya, yang dikarenakan pola hidup tidak sehat, seperti terlalu makan makanan berlemak, tidak rutin berolahraga, kebiasaan merokok, dan kebiasaan konsumsi alkohol (Alodokter, 2026). <br> Sebagai bentuk mitigasi penangangan cardiovascular awal yang cepat, dibutuhkan data screening yang dapat memprediksi seseorang memiliki potensi kelas Cardiovascular.
